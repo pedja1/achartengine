@@ -15,18 +15,6 @@
  */
 package org.achartengine;
 
-import org.achartengine.chart.AbstractChart;
-import org.achartengine.chart.RoundChart;
-import org.achartengine.chart.XYChart;
-import org.achartengine.model.Point;
-import org.achartengine.model.SeriesSelection;
-import org.achartengine.renderer.DefaultRenderer;
-import org.achartengine.renderer.XYMultipleSeriesRenderer;
-import org.achartengine.tools.FitZoom;
-import org.achartengine.tools.PanListener;
-import org.achartengine.tools.Zoom;
-import org.achartengine.tools.ZoomListener;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -39,6 +27,19 @@ import android.os.Build;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewParent;
+
+import org.achartengine.chart.AbstractChart;
+import org.achartengine.chart.RoundChart;
+import org.achartengine.chart.XYChart;
+import org.achartengine.model.Point;
+import org.achartengine.model.SeriesSelection;
+import org.achartengine.renderer.DefaultRenderer;
+import org.achartengine.renderer.XYMultipleSeriesRenderer;
+import org.achartengine.tools.FitZoom;
+import org.achartengine.tools.PanListener;
+import org.achartengine.tools.Zoom;
+import org.achartengine.tools.ZoomListener;
 
 /**
  * The view that encapsulates the graphical chart.
@@ -296,6 +297,10 @@ public class GraphicalView extends View {
       oldX = event.getX();
       oldY = event.getY();
     }
+      ViewParent parent = getParent();
+      // or get a reference to the ViewPager and cast it to ViewParent
+
+      parent.requestDisallowInterceptTouchEvent(true);
     if (mRenderer != null && mDrawn && (mRenderer.isPanEnabled() || mRenderer.isZoomEnabled())) {
       if (mTouchHandler.handleTouch(event)) {
         return true;

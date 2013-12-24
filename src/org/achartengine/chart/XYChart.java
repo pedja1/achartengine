@@ -394,7 +394,7 @@ public abstract class XYChart extends AbstractChart
                 mRenderer.getMarginsColor());
         if (or == Orientation.HORIZONTAL)
         {
-            drawBackground(mRenderer, canvas, x, y, left - x, height - y, paint, true,
+            drawBackground(mRenderer, canvas, x, y, iconMarginLeft * 2 + maxIconWidth - x, height - y, paint, true,
                     mRenderer.getMarginsColor());
             drawBackground(mRenderer, canvas, right, y, margins[3], height - y, paint, true,
                     mRenderer.getMarginsColor());
@@ -403,11 +403,11 @@ public abstract class XYChart extends AbstractChart
         {
             drawBackground(mRenderer, canvas, right, y, width - right, height - y, paint, true,
                     mRenderer.getMarginsColor());
-            drawBackground(mRenderer, canvas, x, y, left - x, height - y, paint, true,
+            drawBackground(mRenderer, canvas, x, y, iconMarginLeft * 2 + maxIconWidth - x, height - y, paint, true,
                     mRenderer.getMarginsColor());
         }
 
-        boolean showLabels = mRenderer.isShowLabels() && hasValues;
+        boolean showLabels = mRenderer.isShowLabels()/* && hasValues*/;
         boolean showGridX = mRenderer.isShowGridX();
         boolean showTickMarks = mRenderer.isShowTickMarks();
         // boolean showCustomTextGridX = mRenderer.isShowCustomTextGridX();
